@@ -96,6 +96,32 @@ class Ship(object):
             ValueError: Illegal direction
         """
 
+        # determine coordinates
+
+        i = 0
+
+        if direction == 'V':
+            # add i  _length times to row
+
+            while i < self._length:
+                col = col + i
+                i+=1
+                self.coords.append((col,row))
+
+
+        elif direction == 'H':
+            # add i _length times to col
+
+            while i < self._length:
+                row = row + i
+                i+=1
+                self.coords.append((col,row))
+
+        # if direction is not V or H
+        else:
+            raise ValueError("Illegal direction")
+
+
 
 class AircraftCarrier(Ship):
     _length = 5
@@ -468,6 +494,11 @@ class Player(object):
             >>> player.is_dead()
             True
         """
+
+        if len(player._ships) == 0:
+            return True
+
+        return False
 
 
 class Game(object):
